@@ -35,11 +35,16 @@ class _image_viewer_ii extends State<image_viewer_ii>{
           onPressed: () => Navigator.of(context).pop(),
         )),
       body: SafeArea(
-        child:PageView(
-          scrollDirection: Axis.horizontal,
-          controller: controller,
-            children:imgs()
-          )
+        child:Container(
+          decoration: BoxDecoration(
+            color: Colors.black
+          ),
+          child: PageView(
+              scrollDirection: Axis.horizontal,
+              controller: controller,
+              children:imgs()
+          ),
+        )
         ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:qbsdonation/models/dafq.dart';
 import 'package:qbsdonation/screens/detail_screen.dart';
 import 'package:qbsdonation/utils/colors.dart';
@@ -132,7 +133,12 @@ class _dashboard_list extends State<dashboard_list>{
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       text(list[index].title, textColor: t4_textColorPrimary, fontSize: textSizeLargeMedium, fontFamily: fontBold),
-                                      text(list[index].target, fontSize: textSizeMedium, textColor: t4_textColorPrimary),
+                                      text(toCurrencyString(list[index].target,
+                                       thousandSeparator: ThousandSeparator.Comma,
+                                       leadingSymbol: "Rp ",
+                                       mantissaLength : 2
+                                      ),
+                                          fontSize: textSizeMedium, textColor: t4_textColorPrimary),
                                       SizedBox(
                                         height: 4,
                                       ),

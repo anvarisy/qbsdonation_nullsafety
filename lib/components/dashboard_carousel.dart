@@ -65,7 +65,7 @@ class dashboard extends State<dashboard_carousel>{
                 width: MediaQuery.of(context).size.width,
                 margin: EdgeInsets.symmetric(horizontal: 5.0),
                 decoration: BoxDecoration(
-                    color: Colors.amber
+                    color: Colors.transparent
                 ),
                 child: Stack(
                   children: <Widget>[

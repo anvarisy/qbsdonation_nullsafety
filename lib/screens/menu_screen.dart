@@ -87,7 +87,7 @@ class menu extends State<menu_screen> {
     );
 
     final list_screens = [
-      dashboard_screen(
+      dashboard_screen(profil: widget.profil,
         //profil: widget.profil,
       ),
       company_screen(),

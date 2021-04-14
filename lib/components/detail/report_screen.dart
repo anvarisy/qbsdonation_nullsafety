@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
@@ -192,10 +191,11 @@ class report_state extends State<report_screen>{
     );
   }
   Future<File> takeFile() async {
-    File file = (await FilePicker.platform.pickFiles(
+    /*File file = (await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['jpg', 'pdf', 'doc'],
-    )) as File;
+    )) as File;*/
+    File file =File("path");
     return Future.value(file);
   }
   Future uploadPhoto(File file) async {

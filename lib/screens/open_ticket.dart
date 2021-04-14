@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
+import 'package:another_flushbar/flushbar.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:qbsdonation/components/dialog.dart';
 import 'package:qbsdonation/models/dafq.dart';
+import 'package:qbsdonation/screens/snap_screen.dart';
 import 'package:qbsdonation/utils/colors.dart';
 import 'package:qbsdonation/utils/constants.dart';
 import 'package:qbsdonation/utils/widgets.dart';
@@ -50,18 +53,7 @@ class _open_ticket extends State<open_ticket> {
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
-                if (widget.mFavouriteList[index].value == 0) {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) => CustomDialog(
-                      color: t12_primary_color,
-                      title: 'QR Code',
-                      image: 'assets/images/qriss.png',
-                      detail:
-                      'Silakan scan menggunakan Gopay, OVO, Dana, dan lainnya',
-                    ),
-                  );
-                } else if (widget.mFavouriteList[index].value == 1) {
+               if (widget.mFavouriteList[index].value == 1) {
                   showModalBottomSheet(
                       isScrollControlled: true,
                       context: context,
@@ -210,6 +202,7 @@ class _open_ticket extends State<open_ticket> {
                   m: widget.m,
                   amount: donation,
                 )));*/
+    EasyLoading.show();
     random_id = 'dafq-'+randomId(12);
       var  data = {
       "transaction_details": {
@@ -242,7 +235,28 @@ class _open_ticket extends State<open_ticket> {
     var json ;
     chargeServer(data).then((value) => {
       print(value),
-
+      if(EasyLoading.isShow){
+        EasyLoading.dismiss()
+      },
+      Navigator.pop(context),
+      print(value),
+      json =jsonDecode(value),
+      FirebaseFirestore.instance.collection("s-transactions")
+          .doc(random_id).set({
+        "p_uid":widget.profil.uid,
+        "p_name":widget.profil.name,
+        "mis_id":widget.m.id,
+        "mis_name":widget.m.title,
+        "mis_image":widget.m.image
+      }).then((value) => {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => snap_screen(snap_url: json['redirect_url'],)))
+      }).catchError((onError){
+        Flushbar(
+          title: "Error",
+          message: "Terjadi gangguan jaringan",
+          duration: Duration(seconds: 2),
+        ).show(context);
+      })
     });
   }
 

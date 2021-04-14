@@ -24,6 +24,14 @@ class image_all_screen_ extends State<image_all_screen>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: Column(
           children: <Widget>[

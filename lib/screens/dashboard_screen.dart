@@ -31,7 +31,7 @@ class _dashboard_screen extends State<dashboard_screen>{
      SingleChildScrollView(
          physics: ScrollPhysics(),
          child: Container(
-           padding: EdgeInsets.only(top: 36.0),
+           padding: EdgeInsets.only(top: 8.0),
            decoration: backgroundDecor(),
            child: Column(
              children: <Widget>[
