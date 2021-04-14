@@ -239,7 +239,12 @@ class _register_screen extends State<register_screen>{
             profil.email = email.text,
             if(EasyLoading.isShow) EasyLoading.dismiss(),
             name.clear(), email.clear(), phone.clear(), password.clear(),
-            goreplace(context, menu_screen(profil: profil)),
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => menu_screen(
+                      profil: profil,
+                    )))
           }).catchError((err) => {
             if(EasyLoading.isShow) EasyLoading.dismiss(),
             Flushbar(

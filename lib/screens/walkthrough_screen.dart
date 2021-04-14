@@ -98,7 +98,11 @@ class _walkthrough_screen extends State<walkthrough_screen> {
                         color: p_12,
                         onPressed: () => {
                       if (currentPage == (content.length - 1)){
-                          gopush(context, register_screen())}
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => register_screen(
+                                )))}
                       else{
                            setState(() {
                            currentPage++;
@@ -111,7 +115,8 @@ class _walkthrough_screen extends State<walkthrough_screen> {
               Padding(padding: EdgeInsets.all(spacing_standard_new),
                   child: InkWell(
                     onTap: ()=>{
-                    gopush(context, register_screen())
+                      Navigator.push(context,
+                       MaterialPageRoute(builder: (context) => register_screen()))
                     },
                     child: text(currentPage != (content.length-1) ? "Skip Now" : "",
                         fontSize: textSizeMedium),

@@ -5,10 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:qbsdonation/components/dashboard_carousel.dart';
 import 'package:qbsdonation/components/dashboard_list.dart';
 import 'package:qbsdonation/helpers/widgets.dart';
+import 'package:qbsdonation/models/dafq.dart';
 import 'package:qbsdonation/utils/colors.dart';
 import 'package:qbsdonation/utils/constants.dart';
 
 class dashboard_screen extends StatefulWidget{
+  user_profil profil;
+
+  dashboard_screen({required this.profil});
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -75,7 +80,7 @@ class _dashboard_screen extends State<dashboard_screen>{
                    ],
                  ),
                ),
-               dashboard_list()
+               dashboard_list(profil: widget.profil,)
              ],
            ),
          )

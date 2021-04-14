@@ -2,14 +2,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:qbsdonation/helpers/methods.dart';
 import 'package:qbsdonation/helpers/widgets.dart';
 import 'package:qbsdonation/models/dafq.dart';
+import 'package:qbsdonation/screens/detail_screen.dart';
 import 'package:qbsdonation/utils/colors.dart';
 import 'package:qbsdonation/utils/constants.dart';
 
 
 class dashboard_list extends StatefulWidget{
+  final user_profil profil;
+  dashboard_list({required this.profil});
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -72,7 +74,11 @@ class _dashboard_list extends State<dashboard_list>{
           itemBuilder: (context, index) {
             return InkWell(
               onTap: ()=>{
-
+              Navigator.of(context).push(MaterialPageRoute(
+              builder: (context)=>detail_screen(
+              m: list[index],
+              profil: widget.profil,
+              )))
               },
               child: Padding(
                   padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),

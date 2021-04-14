@@ -194,7 +194,12 @@ class _login_screen extends State<login_screen>{
                                              profil.mobile = result['phone'],
                                              profil.email = result['email'],
                                              EasyLoading.dismiss(),
-                                             goreplace(context, menu_screen(profil: profil))
+                                              Navigator.pushReplacement(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) => menu_screen(
+                                                        profil: profil,
+                                                      )))
                                             }).catchError((err) => {
                                               if(EasyLoading.isShow){
                                                 EasyLoading.dismiss()

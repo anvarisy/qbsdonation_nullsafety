@@ -43,7 +43,12 @@ class _splash_screen extends State<splash_screen>{
           .listen((user) {
         if (user == null) {
 
-         goreplace(context, walkthrough_screen());
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => walkthrough_screen(
+
+                  )));
         } else {
           FirebaseFirestore.instance.collection("User").doc(user.uid).get().then((DocumentSnapshot result) async =>{
             profil.uid = user.uid,
