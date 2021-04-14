@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:nb_utils/nb_utils.dart';
 import 'colors.dart';
 import 'constants.dart';
 
@@ -28,7 +27,7 @@ BoxDecoration boxDecoration({double radius = 2, Color color = Colors.transparent
       borderRadius: BorderRadius.all(Radius.circular(radius)));
 }
 
-Widget themeLogo(){
+/*Widget themeLogo(){
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
@@ -36,7 +35,7 @@ Widget themeLogo(){
       text("DAFQ APP",fontSize: textSizeLarge,fontFamily: fontBold,textColor: t12_text_color_primary).paddingLeft(spacing_standard_new)
     ],
   );
-}
+}*/
 
 Widget text(var text,
     {var fontSize = textSizeLargeMedium, textColor = t12_text_secondary, var fontFamily = fontRegular, var isCentered = false, var maxLine = 1, var latterSpacing = 0.1, overflow: Overflow}) {
@@ -147,6 +146,7 @@ Widget formField( context,hint,
   );
 }
 
+/*
 Widget appBar(context,var title,{actions}){
   return AppBar(
     title: toolBarTitle(title),
@@ -160,6 +160,7 @@ Widget appBar(context,var title,{actions}){
     actions: actions,
   );
 }
+*/
 
 class T4Button extends StatefulWidget {
   static String tag = '/T4Button';

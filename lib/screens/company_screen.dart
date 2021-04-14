@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_html/flutter_html.dart';
-//import 'package:flutter_html/style.dart';
 import 'package:qbsdonation/models/dafq.dart';
 import 'package:qbsdonation/screens/grid_photo.dart';
 import 'package:qbsdonation/screens/image_all_screen.dart';

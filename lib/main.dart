@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:qbsdonation/screens/company_screen.dart';
 import 'package:qbsdonation/screens/dashboard_screen.dart';
 import 'package:qbsdonation/screens/login_screen.dart';
 import 'package:qbsdonation/screens/menu_screen.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: login_screen(),
+      home: company_screen(),
         builder: EasyLoading.init()
     );
   }

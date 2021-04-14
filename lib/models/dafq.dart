@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:io';
 
-import 'package:video_thumbnail/video_thumbnail.dart';
 
 
 class carousel {
@@ -88,6 +87,7 @@ class user_auth{
     var status;
 }
 
+/*
 class ThumbnailRequest {
     final String? video;
     final String? thumbnailPath;
@@ -106,6 +106,7 @@ class ThumbnailRequest {
             this.timeMs,
             this.quality});
 }
+*/
 
 class ThumbnailResult {
     final Image? image;
@@ -115,6 +116,7 @@ class ThumbnailResult {
     const ThumbnailResult({this.image, this.dataSize, this.height, this.width});
 }
 
+/*
 Future<ThumbnailResult> genThumbnail(ThumbnailRequest r) async {
     //WidgetsFlutterBinding.ensureInitialized();
     Uint8List bytes;
@@ -160,6 +162,7 @@ Future<ThumbnailResult> genThumbnail(ThumbnailRequest r) async {
     }));
     return completer.future;
 }
+*/
 
 class col_profil{
     var image;
