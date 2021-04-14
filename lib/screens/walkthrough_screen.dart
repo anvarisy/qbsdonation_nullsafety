@@ -5,11 +5,10 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qbsdonation/components/walkthrough.dart';
-import 'package:qbsdonation/helpers/methods.dart';
-import 'package:qbsdonation/helpers/widgets.dart';
 import 'package:qbsdonation/screens/register_screen.dart';
 import 'package:qbsdonation/utils/colors.dart';
 import 'package:qbsdonation/utils/constants.dart';
+import 'package:qbsdonation/utils/widgets.dart';
 
 class walkthrough_screen extends StatefulWidget{
   @override

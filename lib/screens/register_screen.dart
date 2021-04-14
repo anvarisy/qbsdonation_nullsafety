@@ -8,14 +8,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:qbsdonation/helpers/methods.dart';
-import 'package:qbsdonation/helpers/widgets.dart';
 import 'package:qbsdonation/models/dafq.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:qbsdonation/screens/menu_screen.dart';
 import 'package:qbsdonation/utils/colors.dart';
 import 'package:qbsdonation/utils/constants.dart';
+import 'package:qbsdonation/utils/widgets.dart';
 import 'login_screen.dart';
 
 class register_screen extends StatefulWidget{
@@ -192,7 +191,9 @@ class _register_screen extends State<register_screen>{
                                   child: InkWell(
                                     child: text("Have an account?", fontSize: textSizeMedium),
                                     onTap: (){
-                                        goreplace(context, login_screen());
+                                      Navigator.push(context, MaterialPageRoute(
+                                          builder: (context) => login_screen(
+                                          )));
                                     },
                                   ),)
                               ],))

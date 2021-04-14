@@ -2,11 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:qbsdonation/helpers/widgets.dart';
 import 'package:qbsdonation/models/dafq.dart';
 import 'package:qbsdonation/screens/detail_screen.dart';
 import 'package:qbsdonation/utils/colors.dart';
 import 'package:qbsdonation/utils/constants.dart';
+import 'package:qbsdonation/utils/widgets.dart';
 
 
 class dashboard_list extends StatefulWidget{

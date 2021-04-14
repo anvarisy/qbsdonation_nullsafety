@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'colors.dart';
 import 'constants.dart';
 
@@ -27,15 +28,17 @@ BoxDecoration boxDecoration({double radius = 2, Color color = Colors.transparent
       borderRadius: BorderRadius.all(Radius.circular(radius)));
 }
 
-/*Widget themeLogo(){
+Widget themeLogo(){
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
       Image(image: AssetImage('assets/images/icon.png'),width: 45,height: 45,),
-      text("DAFQ APP",fontSize: textSizeLarge,fontFamily: fontBold,textColor: t12_text_color_primary).paddingLeft(spacing_standard_new)
+      Padding(padding: EdgeInsets.fromLTRB(spacing_standard_new, 0, 0, 0),
+        child:text("DAFQ APP",fontSize: textSizeLarge,fontFamily: fontBold,textColor: t12_text_color_primary,) ,)
+
     ],
   );
-}*/
+}
 
 Widget text(var text,
     {var fontSize = textSizeLargeMedium, textColor = t12_text_secondary, var fontFamily = fontRegular, var isCentered = false, var maxLine = 1, var latterSpacing = 0.1, overflow: Overflow}) {
@@ -206,4 +209,96 @@ SizedBox buttonStyle(var text) {
         color: t11_PrimaryColor,
         onPressed: () => {},
       ));
+}
+
+InputDecoration textDecoration({required String hint,  required IconData prefixIcon, required bool isPassword}){
+  return InputDecoration(
+    focusedBorder: UnderlineInputBorder(
+        borderRadius: BorderRadius.circular(spacing_standard),
+        borderSide: BorderSide(color: Colors.transparent)
+
+    ),
+    enabledBorder: UnderlineInputBorder(
+        borderRadius: BorderRadius.circular(spacing_standard),
+        borderSide: BorderSide(color: Colors.transparent)
+
+    ),
+    filled: true,
+    fillColor: t12_edittext_background,
+    hintText:hint,
+    hintStyle: TextStyle(
+        fontSize: textSizeMedium, color: t12_text_secondary),
+    prefixIcon:Icon(
+      prefixIcon,
+      color: t12_text_secondary,
+      size: 20,
+    ) ,
+  );
+}
+
+InputDecoration passDecoration({required String hint,  required IconData prefixIcon, required bool isPassword, suffixIconSelector,required IconData suffixIcon}){
+  return InputDecoration(
+    focusedBorder: UnderlineInputBorder(
+        borderRadius: BorderRadius.circular(spacing_standard),
+        borderSide: BorderSide(color: Colors.transparent)
+
+    ),
+    enabledBorder: UnderlineInputBorder(
+        borderRadius: BorderRadius.circular(spacing_standard),
+        borderSide: BorderSide(color: Colors.transparent)
+
+    ),
+    filled: true,
+    fillColor: t12_edittext_background,
+    hintText:hint,
+    hintStyle: TextStyle(
+        fontSize: textSizeMedium, color: t12_text_secondary),
+    prefixIcon:Icon(
+      prefixIcon,
+      color: t12_text_secondary,
+      size: 20,
+    ) ,
+    suffixIcon: isPassword
+        ? GestureDetector(
+      onTap: suffixIconSelector,
+      child: new Icon(
+        suffixIcon,
+        color: t12_text_secondary,
+        size: 20,
+      ),
+    )
+        : Icon(
+      suffixIcon,
+      color: t12_text_secondary,
+      size: 20,
+    ),
+  );
+}
+
+TextStyle textStyle(){
+  return TextStyle(
+      fontSize: textSizeNormal,
+      color: false
+          ? Colors.transparent
+          : t12_text_color_primary,
+      fontFamily: fontRegular);
+}
+
+class CustomAnimation extends EasyLoadingAnimation {
+  CustomAnimation();
+
+  @override
+  Widget buildWidget(
+      Widget child,
+      AnimationController controller,
+      AlignmentGeometry alignment,
+      ) {
+    return Opacity(
+      opacity: controller.value,
+      child: RotationTransition(
+        turns: controller,
+        child: child,
+      ),
+    );
+  }
 }

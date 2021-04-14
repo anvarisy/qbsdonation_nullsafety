@@ -40,6 +40,7 @@ dependencies:
   flutter_easyloading: ^3.0.0
   flutter_launcher_icons: ^0.9.0
   flutter_progress_hud: ^2.0.0
+  font_awesome_flutter: ^9.0.0
   intl: 0.17.0
   flutter_multi_formatter: ^2.0.2
   pinch_zoom: ^0.1.0

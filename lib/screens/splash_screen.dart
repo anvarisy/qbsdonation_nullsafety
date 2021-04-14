@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:qbsdonation/helpers/methods.dart';
 import 'package:qbsdonation/models/dafq.dart';
 import 'package:qbsdonation/screens/menu_screen.dart';
 import 'package:qbsdonation/screens/register_screen.dart';
@@ -36,7 +35,7 @@ class _splash_screen extends State<splash_screen>{
 
 
   @override
-  void initState() async{
+  void initState(){
     Firebase.initializeApp().whenComplete(() {
       FirebaseAuth.instance
           .authStateChanges()

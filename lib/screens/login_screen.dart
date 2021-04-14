@@ -6,13 +6,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:qbsdonation/helpers/methods.dart';
-import 'package:qbsdonation/helpers/widgets.dart';
 import 'package:qbsdonation/models/dafq.dart';
 import 'package:qbsdonation/screens/menu_screen.dart';
 import 'package:qbsdonation/screens/register_screen.dart';
 import 'package:qbsdonation/utils/colors.dart';
 import 'package:qbsdonation/utils/constants.dart';
+import 'package:qbsdonation/utils/widgets.dart';
 
 class login_screen extends StatefulWidget{
   @override
@@ -82,7 +81,7 @@ class _login_screen extends State<login_screen>{
                                       textInputAction: TextInputAction.next,
                                     ),
                                    ),
-                                   Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
+                                   Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                                        child: TextFormField(
                                          decoration: passDecoration(
                                            hint: 'Password',
@@ -234,7 +233,7 @@ class _login_screen extends State<login_screen>{
                                         fontFamily: fontMedium),
                                   ],),
                                 onTap: ()=>{
-                                  gopush(context, register_screen())
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => register_screen()))
                                 },
                               ),)],),
                      ),
