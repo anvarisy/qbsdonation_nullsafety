@@ -179,18 +179,16 @@ class channel{
 }
 
 class money {
-    static String toCurrency(String value, {
-        int mantissaLength = 2,
-        /// in case you need a period as a thousand separator
-        /// simply change ThousandSeparator.Comma to ThousandSeparator.Period
-        /// and you will get 1.000.000,00 instead of 1,000,000.00
-        ThousandSeparator thousandSeparator = ThousandSeparator.Period,
-        ShorteningPolicy shorteningPolicy = ShorteningPolicy.NoShortening,
-        String leadingSymbol = 'Rp. ',
-        String trailingSymbol = '',
-        bool useSymbolPadding = false
-    }) {
-     return toCurrencyString(value);
+    static String toCurrency(String value) {
+        return toCurrencyString(
+            value,
+            mantissaLength: 2,
+            thousandSeparator: ThousandSeparator.Period,
+            shorteningPolicy: ShorteningPolicy.NoShortening,
+            leadingSymbol: 'IDR',
+            trailingSymbol: '',
+            useSymbolPadding: false,
+     );
     }
 }
 

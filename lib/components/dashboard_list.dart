@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:qbsdonation/helpers/methods.dart';
 import 'package:qbsdonation/helpers/widgets.dart';
 import 'package:qbsdonation/models/colors.dart';
 import 'package:qbsdonation/models/font_sizes.dart';
-import 'package:qbsdonation/models/model.dart';
+import 'package:qbsdonation/models/dafq.dart';
 
 class dashboard_list extends StatefulWidget{
   @override
@@ -107,7 +106,7 @@ class _dashboard_list extends State<dashboard_list>{
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       text(list[index].title, textColor: t4_textColorPrimary, fontSize: textSizeLargeMedium, fontFamily: fontBold),
-                                      text(list[index].target, fontSize: textSizeMedium, textColor: t4_textColorPrimary),
+                                      text(money.toCurrency(list[index].target as String), fontSize: textSizeMedium, textColor: t4_textColorPrimary),
                                       SizedBox(
                                         height: 4,
                                       ),

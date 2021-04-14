@@ -170,7 +170,7 @@ class T4Button extends StatefulWidget {
   var height = 50.0;
 
 
-  T4Button({@required this.textContent, required this.onPressed, this.isStroked = false, this.height = 45.0});
+  T4Button({required this.textContent, required this.onPressed, this.isStroked = false, this.height = 45.0});
 
   @override
   T4ButtonState createState() => T4ButtonState();
