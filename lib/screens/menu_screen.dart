@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:qbsdonation/com.stfqmarket/main.dart';
 import 'package:qbsdonation/models/dafq.dart';
 //import 'package:qbsdonation/screens/join_screen.dart';
 import 'package:qbsdonation/screens/login_screen.dart';
@@ -79,7 +80,7 @@ class menu extends State<menu_screen> {
           title: Text('DAFQ Market'),
           leading: Icon(Icons.shopping_cart),
           onTap: () {
-            changePage(4);
+            changePage(_drawerCollection.length);
             Navigator.pop(context);
           },
         ),
@@ -95,7 +96,7 @@ class menu extends State<menu_screen> {
       //article_screen(),
       //profil_screen(u_profil: widget.profil,),
       // stfq market
-      //STFQMarketMainPage(widget.profil),
+      STFQMarketMainPage(widget.profil),
     ];
 
     return WillPopScope(
@@ -133,7 +134,7 @@ class menu extends State<menu_screen> {
 
   void changePage(int index) {
     String appbarTitle;
-    if (index == 4) appbarTitle = 'Market';
+    if (index == _drawerCollection.length) appbarTitle = 'Market';
     else appbarTitle = _drawerCollection[index]['title'] as String;
 
     setState(() {

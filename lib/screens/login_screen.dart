@@ -3,6 +3,7 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -32,6 +33,13 @@ class _login_screen extends State<login_screen>{
   bool passwordVisible = true;
   bool isLoading = false;
   bool isRemember = false;
+
+  @override
+  void initState() {
+    Firebase.initializeApp();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     user_profil profil = user_profil();
