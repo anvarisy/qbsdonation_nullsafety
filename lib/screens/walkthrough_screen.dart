@@ -71,8 +71,8 @@ class _walkthrough_screen extends State<walkthrough_screen> {
           ),
           Column(
             children: <Widget>[
-              Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, height * 0.09),
-                child:  DotsIndicator(
+              Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                child: content.length > 0 ? DotsIndicator(
                dotsCount: content.length,
                position: currentPage.toDouble(),
                decorator: DotsDecorator(
@@ -80,13 +80,13 @@ class _walkthrough_screen extends State<walkthrough_screen> {
                    activeColor: p_12,
                    activeSize: Size.square(spacing_middle),
                    spacing: EdgeInsets.all(3)),
-             ),),
+             ) : Container(),),
               SizedBox(
                   width: double.infinity,
                   child: Padding(padding: EdgeInsets.fromLTRB(spacing_large, 0, spacing_large, 0),
                     child: MaterialButton(
                       padding: EdgeInsets.only(
-                        top: spacing_middle, bottom: spacing_middle),
+                        top: 16, bottom: 16),
                         child: text(
                         currentPage == (content.length - 1)
                             ? "Get Started"

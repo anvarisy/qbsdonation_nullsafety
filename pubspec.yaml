@@ -40,7 +40,7 @@ dependencies:
   flutter_launcher_icons: ^0.9.0
   flutter_progress_hud: ^2.0.0
   intl: 0.17.0
-
+  flutter_multi_formatter: ^2.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -93,4 +93,4 @@ flutter:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/stfq.png"
+  image_path: "assets/images/icon.png"

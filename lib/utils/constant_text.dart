@@ -1,0 +1,7 @@
+
+const String des = 'DAFQ adalah Islamic Fundraising yang menggalang kekuatan pendanaan berbasis ibadah dan keikhlasan untuk mendukung dunia pendidikan Islam, terutama pendidikan bidang Al-Quran dan Teknologi untuk santri. Pendidikan bidang Al-Quran yang dimaksud adalah institusi-institusi pendidikan dalam berbagai bentuk nya yang bertujuan untuk mendidik para penghafal Al-Quran. Pendidikan bidang Teknologi untuk santri, maksudnya adalah ; institusi-institusi pendidikan dalam berbagai bentuknya dimana intitusi ini menyandingkan pendidikan bidang IT dengan bidang kegamaan, khususnya Al-Quran. Ini harus dilakukan karena di masa ini, ummat muslim membutuhkan generasi penjaga Al-Quran sekaligus mereka yang memiliki keahlian dibidang teknologi.';
+const String visi = 'Menciptakan banyak sekolah gratis untuk warga tidak mampu';
+const String misi = '- Something like loremp ipsum \n'
+    '- Something like not loremp ipsum \n'
+    '- Something like that loremp ipsum';
+const String dummy_text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum";
