@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qbsdonation/helpers/methods.dart';
-import 'package:qbsdonation/models/model.dart';
+import 'package:qbsdonation/models/dafq.dart';
 import 'package:qbsdonation/screens/menu_screen.dart';
 import 'package:qbsdonation/screens/register_screen.dart';
 import 'package:qbsdonation/screens/walkthrough_screen.dart';

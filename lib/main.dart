@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: company_screen(),
+      home: login_screen(),
         builder: EasyLoading.init()
     );
   }

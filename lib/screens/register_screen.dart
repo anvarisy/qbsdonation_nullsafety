@@ -13,7 +13,7 @@ import 'package:qbsdonation/helpers/methods.dart';
 import 'package:qbsdonation/helpers/widgets.dart';
 import 'package:qbsdonation/models/colors.dart';
 import 'package:qbsdonation/models/font_sizes.dart';
-import 'package:qbsdonation/models/model.dart';
+import 'package:qbsdonation/models/dafq.dart';
 import 'package:http/http.dart' as http;
 import 'package:qbsdonation/screens/menu_screen.dart';
 import 'login_screen.dart';
