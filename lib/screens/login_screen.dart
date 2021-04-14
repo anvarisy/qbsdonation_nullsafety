@@ -183,6 +183,10 @@ class _login_screen extends State<login_screen>{
                                               email: email.text,
                                               password: password.text)
                                               .then((currentUser) => {
+/*                                          Flushbar(
+                                          title: 'Perhatian',
+                                          message: 'Login Berhasil',
+                                          duration: Duration(seconds: 3),).show(context)*/
                                             FirebaseFirestore.instance.collection("User").doc(currentUser.user!.uid).get()
                                              .then((DocumentSnapshot result) => {
                                              profil.uid = currentUser.user!.uid,
@@ -195,7 +199,10 @@ class _login_screen extends State<login_screen>{
                                               if(EasyLoading.isShow){
                                                 EasyLoading.dismiss()
                                               },
-                                              EasyLoading.show(),
+                                            Flushbar(
+                                            title: 'Perhatian',
+                                            message: 'Koneksi bermasalah',
+                                            duration: Duration(seconds: 3),).show(context)
                                                 })
                                           }).catchError((err) {
                                             if(EasyLoading.isShow){

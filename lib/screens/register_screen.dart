@@ -40,7 +40,7 @@ class _register_screen extends State<register_screen>{
   TextEditingController password = TextEditingController();
   TextEditingController email= TextEditingController();
   bool _autoValidate = false;
-  bool passwordVisible = false;
+  bool passwordVisible = true;
   user_profil profil = user_profil();
   // bool isLoading = false;
   bool isRemember = false;

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:qbsdonation/screens/dashboard_screen.dart';
 import 'package:qbsdonation/screens/login_screen.dart';
+import 'package:qbsdonation/screens/menu_screen.dart';
 import 'package:qbsdonation/screens/register_screen.dart';
 import 'package:qbsdonation/screens/splash_screen.dart';
 import 'package:qbsdonation/screens/walkthrough_screen.dart';

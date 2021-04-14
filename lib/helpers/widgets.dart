@@ -32,9 +32,9 @@ Widget themeLogo(){
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
-      Image(image: AssetImage('assets/images/icon.png'),width: 45,height: 45,),
+      Image(image: AssetImage('assets/images/stfq.png'),width: 45,height: 45,),
       Padding(padding: EdgeInsets.fromLTRB(spacing_standard_new, 0, 0, 0),
-        child: text("DAFQ APP",fontSize: textSizeLarge,fontFamily: fontBold,textColor: t12_text_color_primary),)
+        child: text("STFQ APP",fontSize: textSizeLarge,fontFamily: fontBold,textColor: t12_text_color_primary),)
 
     ],
   );
@@ -192,7 +192,6 @@ InputDecoration passDecoration({required String hint,  required IconData prefixI
   );
 }
 
-
 TextStyle textStyle(){
   return TextStyle(
       fontSize: textSizeNormal,
@@ -201,8 +200,6 @@ TextStyle textStyle(){
           : t12_text_color_primary,
       fontFamily: fontRegular);
 }
-
-
 
 class CustomAnimation extends EasyLoadingAnimation {
   CustomAnimation();
