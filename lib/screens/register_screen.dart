@@ -8,14 +8,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:qbsdonation/helpers/methods.dart';
 import 'package:qbsdonation/helpers/widgets.dart';
-import 'package:qbsdonation/models/colors.dart';
-import 'package:qbsdonation/models/font_sizes.dart';
-import 'package:qbsdonation/models/model.dart';
+import 'package:qbsdonation/models/dafq.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:qbsdonation/screens/menu_screen.dart';
+import 'package:qbsdonation/utils/colors.dart';
+import 'package:qbsdonation/utils/constants.dart';
 import 'login_screen.dart';
 
 class register_screen extends StatefulWidget{

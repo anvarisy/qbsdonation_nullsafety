@@ -8,11 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:qbsdonation/helpers/methods.dart';
 import 'package:qbsdonation/helpers/widgets.dart';
-import 'package:qbsdonation/models/colors.dart';
-import 'package:qbsdonation/models/font_sizes.dart';
-import 'package:qbsdonation/models/model.dart';
+import 'package:qbsdonation/models/dafq.dart';
 import 'package:qbsdonation/screens/menu_screen.dart';
 import 'package:qbsdonation/screens/register_screen.dart';
+import 'package:qbsdonation/utils/colors.dart';
+import 'package:qbsdonation/utils/constants.dart';
 
 class login_screen extends StatefulWidget{
   @override

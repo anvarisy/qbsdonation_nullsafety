@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:qbsdonation/components/walkthrough.dart';
 import 'package:qbsdonation/helpers/methods.dart';
 import 'package:qbsdonation/helpers/widgets.dart';
-import 'package:qbsdonation/models/colors.dart';
-import 'package:qbsdonation/models/font_sizes.dart';
 import 'package:qbsdonation/screens/register_screen.dart';
+import 'package:qbsdonation/utils/colors.dart';
+import 'package:qbsdonation/utils/constants.dart';
 
 class walkthrough_screen extends StatefulWidget{
   @override

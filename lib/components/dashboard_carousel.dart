@@ -1,11 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qbsdonation/helpers/widgets.dart';
-import 'package:qbsdonation/models/colors.dart';
-import 'package:qbsdonation/models/font_sizes.dart';
-import 'package:qbsdonation/models/model.dart';
+import 'package:qbsdonation/models/dafq.dart';
+import 'package:qbsdonation/utils/colors.dart';
+import 'package:qbsdonation/utils/constants.dart';
+
 
 class dashboard_carousel extends StatefulWidget{
   @override
@@ -70,7 +72,20 @@ class dashboard extends State<dashboard_carousel>{
                     ClipRRect(
                       borderRadius: new BorderRadius.circular(12.0),
                       child:
-                      Image.network(slider.image,
+                      CachedNetworkImage(
+                        placeholder: (context, url) => Center(
+                          child: Container(
+                            width: 20.0,
+                            height: 20.0,
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        imageUrl:slider.image,
+                        fit: BoxFit.fill,
+                        width: MediaQuery.of(context).size.width,
+                        height: cardSize.height,),
+                      /*Image.network(slider.image,
                           width: MediaQuery.of(context).size.width,
                           height: cardSize.height,
                           fit: BoxFit.fill,
@@ -93,7 +108,7 @@ class dashboard extends State<dashboard_carousel>{
                             );
                           }
 
-                      )
+                      )*/
                       /*CachedNetworkImage(
                         placeholder: (context, url) => Center(
                           child: Container(

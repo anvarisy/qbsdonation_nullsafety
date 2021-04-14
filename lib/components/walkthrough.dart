@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qbsdonation/helpers/widgets.dart';
-import 'package:qbsdonation/models/colors.dart';
-import 'package:qbsdonation/models/font_sizes.dart';
+import 'package:qbsdonation/utils/colors.dart';
+import 'package:qbsdonation/utils/constants.dart';
 
 class walkthrough_widget extends StatelessWidget {
   var title;

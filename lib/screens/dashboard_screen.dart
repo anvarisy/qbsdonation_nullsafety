@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:qbsdonation/components/dashboard_carousel.dart';
 import 'package:qbsdonation/components/dashboard_list.dart';
 import 'package:qbsdonation/helpers/widgets.dart';
-import 'package:qbsdonation/models/colors.dart';
-import 'package:qbsdonation/models/font_sizes.dart';
+import 'package:qbsdonation/utils/colors.dart';
+import 'package:qbsdonation/utils/constants.dart';
 
 class dashboard_screen extends StatefulWidget{
   @override

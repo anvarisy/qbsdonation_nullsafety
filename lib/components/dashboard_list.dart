@@ -1,11 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qbsdonation/helpers/methods.dart';
 import 'package:qbsdonation/helpers/widgets.dart';
-import 'package:qbsdonation/models/colors.dart';
-import 'package:qbsdonation/models/font_sizes.dart';
-import 'package:qbsdonation/models/model.dart';
+import 'package:qbsdonation/models/dafq.dart';
+import 'package:qbsdonation/utils/colors.dart';
+import 'package:qbsdonation/utils/constants.dart';
+
 
 class dashboard_list extends StatefulWidget{
   @override
@@ -80,7 +82,24 @@ class _dashboard_list extends State<dashboard_list>{
                         children: <Widget>[
                           ClipRRect(
                             child:
-                             Image.network(list[index].image,
+                            ClipRRect(
+                              child:  CachedNetworkImage(
+                                placeholder: (context, url) => Center(
+                                  child: Container(
+                                    width: 20.0,
+                                    height: 20.0,
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                ),
+                                errorWidget: (context, url, error) => Icon(Icons.error),
+                                imageUrl:list[index].image,
+                                width: width / 3,
+                                height: width / 3.2,
+                                fit: BoxFit.fill,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            /* Image.network(list[index].image,
                                width: width / 3,
                                 height: width / 3.2,
                                 fit: BoxFit.fill,
@@ -94,7 +113,7 @@ class _dashboard_list extends State<dashboard_list>{
                                 return Center(
                                   child: CircularProgressIndicator(
                                   value: loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes! : null,),);}
-                                ),
+                                ),*/
                             borderRadius: BorderRadius.circular(10),
                           ),
                           Expanded(

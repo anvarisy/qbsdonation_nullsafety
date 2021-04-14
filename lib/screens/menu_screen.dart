@@ -2,7 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:qbsdonation/models/model.dart';
+import 'package:qbsdonation/models/dafq.dart';
 
 class menu_screen extends StatefulWidget{
 
@@ -51,7 +51,7 @@ class _menu_screen extends State<menu_screen>{
     return Scaffold(
       body:
         Center(
-          child: Text('Koala'),
+          child: Text(widget.profil.email),
         )
     );
   }
