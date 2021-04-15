@@ -149,13 +149,13 @@ Widget formField( context,hint,
   );
 }
 
-/*
 Widget appBar(context,var title,{actions}){
   return AppBar(
     title: toolBarTitle(title),
-    leading: Icon(Icons.arrow_back_ios).onTap((){
-      Navigator.pop(context);
-    }),
+    leading: InkWell(child: Icon(Icons.arrow_back_ios),
+    onTap: ()=>{
+    Navigator.pop(context)
+    },),
     titleSpacing:0,
     iconTheme: IconThemeData(color: t12_text_color_primary),
     backgroundColor: Colors.white.withOpacity(0.1),
@@ -163,7 +163,6 @@ Widget appBar(context,var title,{actions}){
     actions: actions,
   );
 }
-*/
 
 class T4Button extends StatefulWidget {
   static String tag = '/T4Button';

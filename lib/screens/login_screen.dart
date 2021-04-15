@@ -82,9 +82,7 @@ class _login_screen extends State<login_screen>{
                                       focusNode: emailFocus,
                                       controller: email,
                                       validator:  (value) {
-                                        return value!.isEmpty
-                                            ? "Email Required"
-                                            : null;
+                                        return value!.isEmpty ? "Email Required" : null;
                                       },
                                       textInputAction: TextInputAction.next,
                                     ),
@@ -95,9 +93,7 @@ class _login_screen extends State<login_screen>{
                                            hint: 'Password',
                                            prefixIcon: Icons.lock_outline,
                                            isPassword: true,
-                                           suffixIcon: passwordVisible
-                                               ? Icons.visibility
-                                               : Icons.visibility_off,
+                                           suffixIcon: passwordVisible ? Icons.visibility : Icons.visibility_off,
                                            suffixIconSelector: () {
                                              setState(() {
                                                passwordVisible = !passwordVisible;

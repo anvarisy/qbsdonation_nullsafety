@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/money_input_enums.dart';
 import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:qbsdonation/components/detail/report_screen.dart';
+import 'file:///A:/Projects%20Folder/qbsdonation/lib/components/report_screen.dart';
 import 'package:qbsdonation/models/dafq.dart';
 import 'package:qbsdonation/screens/grid_photo.dart';
 import 'package:qbsdonation/screens/open_ticket.dart';
