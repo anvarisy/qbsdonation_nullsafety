@@ -1,12 +1,7 @@
-import 'dart:async';
-import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:qbsdonation/com.stfqmarket/item-view/product.dart';
-import 'package:qbsdonation/com.stfqmarket/main/homesections/root.dart';
-import 'package:qbsdonation/com.stfqmarket/objects/category.dart';
 import 'package:qbsdonation/com.stfqmarket/objects/product.dart';
-import 'package:http/http.dart' as http;
 
 class ProductsGrid extends StatefulWidget {
   static const String routeName = '/product-grid';
@@ -75,7 +70,7 @@ class _ProductsGridState extends State<ProductsGrid> {
               if (snapshot.hasData) {
                 var data = Product.toList(snapshot.data!.docs);
                 var screenWidth = MediaQuery.of(context).size.width;
-                int gridCrossAxisCount = (screenWidth / 140).truncate();
+                int gridCrossAxisCount = (screenWidth / 120).truncate();
 
                 return GridView.builder(
                   shrinkWrap: true,

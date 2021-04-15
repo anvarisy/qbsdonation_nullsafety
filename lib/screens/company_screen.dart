@@ -115,12 +115,9 @@ class company extends State<company_screen> {
                         children: <Widget>[
                           Image.asset(
                             'assets/images/dafq.png',
-                            width: width,
-                            height: width * 0.4,
-                            fit: BoxFit.fill,
-                          ),
-                          SizedBox(
-                            height: spacing_standard_new,
+                            //width: width,
+                            height: MediaQuery.of(context).size.height * (2 / 7),
+                            fit: BoxFit.fitHeight,
                           ),
                         ],
                       ),
@@ -207,7 +204,6 @@ class company extends State<company_screen> {
                         ],
                       ),
                     ),
-
                   ],
                 ),
               )

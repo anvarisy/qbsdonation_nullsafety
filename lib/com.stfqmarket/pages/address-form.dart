@@ -404,44 +404,40 @@ class _AddressFormPageState extends State<AddressFormPage> {
                             final results = jsonDecode(response.body)['rajaongkir']['results'];
                             final kotas = Kota.toKotaList(results);
 
-                            for (Kota kota in kotas) {
-                              print([kota.id, kota.name]);
-                            }
                             _suggestions.addAll(kotas);
 
                             return _suggestions;
                           }
                         }
 
-                        print(filter);
                         List<Kota> filteredKotas = _suggestions.where((element) => element.name.toLowerCase().contains(filter.toLowerCase())).toList();
-                        for (Kota kota in filteredKotas) {
-                          print([kota.id, kota.name]);
-                        }
                         return filteredKotas;
                       },
                       showSearchBox: true,
                       showSelectedItem: true,
-                      compareFn: (city, filter) => city.isEqual(filter),
+                      compareFn: (Kota? city, Kota? filter) {
+                        if (filter == null) return false;
+                        return city?.isEqual(filter) ?? false;
+                      },
                       label: "Kota",
-                      dropdownBuilder: (context, city, str) => (city.name.isEmpty)
+                      dropdownBuilder: (context, Kota? city, str) => (city?.name.isEmpty == null)
                           ? ListTile(
                         contentPadding: EdgeInsets.all(0),
                         title: Text("Pilih kota"),
                       )
                           : ListTile(
                         contentPadding: EdgeInsets.all(0),
-                        title: Text(city.name),
+                        title: Text(city!.name),
                         subtitle: Text(city.type),
                       ),
-                      popupItemBuilder: (context, city, selected) =>
+                      popupItemBuilder: (context, Kota? city, selected) =>
                       (selected)
                           ? ListTile(
-                        title: Text(city.name, style: TextStyle(color: Colors.green),),
+                        title: Text(city!.name, style: TextStyle(color: Colors.green),),
                         subtitle: Text(city.type),
                       )
                           : ListTile(
-                        title: Text(city.name),
+                        title: Text(city!.name),
                         subtitle: Text(city.type),
                       ),
                       searchBoxDecoration: InputDecoration(
@@ -477,21 +473,16 @@ class _AddressFormPageState extends State<AddressFormPage> {
                       ],
                       label: "Kurir",
                       hint: "Pilih kurir",
-                      dropdownBuilder: (context, courier, str) => (courier == null)
-                          ? ListTile(
+                      dropdownBuilder: (context, String? courier, str) => ListTile(
                         contentPadding: EdgeInsets.all(0),
-                        title: Text("Pilih kurir"),
-                      )
-                          : ListTile(
-                        contentPadding: EdgeInsets.all(0),
-                        title: Text(courier),
+                        title: Text(courier ?? "Pilih kurir"),
                       ),
                       dropdownSearchDecoration: DefaultInputDecoration(),
-                      popupItemDisabled: (courier) {
+                      popupItemDisabled: (String? courier) {
                         if (_selectedKurir != null) return _selectedKurir == courier;
                         return false;
                       },
-                      onChanged: (courier) => setState(() { _selectedKurir = courier; }),
+                      onChanged: (String? courier) => setState(() { _selectedKurir = courier; }),
                       validator: (val) {
                         if (val == null) {
                           return 'Harus diisi';

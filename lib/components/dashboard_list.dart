@@ -12,7 +12,9 @@ import 'package:qbsdonation/utils/widgets.dart';
 
 class dashboard_list extends StatefulWidget{
   final user_profil profil;
-  dashboard_list({required this.profil});
+  final bool compact;
+
+  dashboard_list({required this.profil, this.compact=false});
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -65,6 +67,8 @@ class _dashboard_list extends State<dashboard_list>{
     var width = MediaQuery.of(context).size.width;
     width = width - 50;
     final Size cardSize = Size(width, width / 1.8);
+    var screenHeight = MediaQuery.of(context).size.height;
+
     return Padding(
       padding: const EdgeInsets.only(left: 0, right: 0),
       child: ListView.builder(
@@ -100,8 +104,8 @@ class _dashboard_list extends State<dashboard_list>{
                                 ),
                                 errorWidget: (context, url, error) => Icon(Icons.error),
                                 imageUrl:list[index].image,
-                                width: width / 3,
-                                height: width / 3.2,
+                                width: screenHeight * (1/5),
+                                height: screenHeight * (1/5),
                                 fit: BoxFit.fill,
                               ),
                               borderRadius: BorderRadius.circular(10),
