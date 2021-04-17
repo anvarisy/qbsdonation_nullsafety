@@ -151,7 +151,7 @@ class _dashboard_screen extends State<dashboard_screen>{
                        ],
                      ),
                    ),
-                   dashboard_list(profil: widget.profil, compact: true,)
+                   dashboard_list(profil: widget.profil, /*compact: true,*/)
                  ],
                ),
              ),

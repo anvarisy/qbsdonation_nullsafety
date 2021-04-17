@@ -12,9 +12,9 @@ import 'package:qbsdonation/utils/widgets.dart';
 
 class dashboard_list extends StatefulWidget{
   final user_profil profil;
-  final bool compact;
+  //final bool compact;
 
-  dashboard_list({required this.profil, this.compact=false});
+  dashboard_list({required this.profil});
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState

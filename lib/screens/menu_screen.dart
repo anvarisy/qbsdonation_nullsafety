@@ -5,8 +5,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qbsdonation/com.stfqmarket/main.dart';
 import 'package:qbsdonation/models/dafq.dart';
+import 'package:qbsdonation/screens/article_screen.dart';
 //import 'package:qbsdonation/screens/join_screen.dart';
 import 'package:qbsdonation/screens/login_screen.dart';
+import 'package:qbsdonation/screens/profil_screen.dart';
 //import 'package:qbsdonation/screens/profile_screen.dart';
 //import 'package:qbsdonation/utils/bottom_menu.dart';
 import 'package:qbsdonation/utils/colors.dart';
@@ -41,8 +43,8 @@ class menu extends State<menu_screen> {
     {'index': 0, 'title': 'Home', 'icon': Icons.home},
     {'index': 1, 'title': 'About', 'icon': Icons.business},
     /*{'index': 2, 'title': 'Ajukan Misi', 'icon': Icons.add},*/
-    //{'index': 2, 'title': 'Article', 'ico n': Icons.print},
-    //{'index': 3, 'title': 'Profile', 'icon': Icons.person_outline},
+    {'index': 2, 'title': 'Article', 'ico n': Icons.print},
+    {'index': 3, 'title': 'Profile', 'icon': Icons.person_outline},
     //{'index': 5, 'title': 'STFQ Product', 'icon': Icons.print},
     //{'index': 6, 'title': 'Our STFQ', 'icon': Icons.person_outline},
   ];
@@ -77,7 +79,7 @@ class menu extends State<menu_screen> {
           child: Divider(),
         ),
         ListTile(
-          title: Text('DAFQ Market'),
+          title: Text('STFQ Market'),
           leading: Icon(Icons.shopping_cart),
           onTap: () {
             changePage(_drawerCollection.length);
@@ -88,13 +90,11 @@ class menu extends State<menu_screen> {
     );
 
     final list_screens = [
-      dashboard_screen(profil: widget.profil,
-        //profil: widget.profil,
-      ),
+      dashboard_screen(profil: widget.profil,),
       company_screen(),
      /* join_screen(profil: widget.profil,),*/
-      //article_screen(),
-      //profil_screen(u_profil: widget.profil,),
+      article_screen(),
+      profil_screen(u_profil: widget.profil,),
       // stfq market
       STFQMarketMainPage(widget.profil),
     ];
