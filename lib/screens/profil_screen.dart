@@ -19,7 +19,7 @@ class profil_screen extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    throw UnimplementedError();
+    return _profil_screen();
   }
 
 
@@ -239,6 +239,7 @@ class _profil_screen extends State<profil_screen>{
   Widget _total(BuildContext context, List<DocumentSnapshot> snapshot){
     double total = 0;
     for(DocumentSnapshot element in snapshot){
+      print(element);
       if(element['mis_id']!='12345678'){
         if(element['gross_amount']!= null){
           total += double.parse(element['gross_amount']);

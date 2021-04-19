@@ -30,6 +30,12 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.BROWSABLE" />
+<!--                <data
+                    android:scheme="dafq"
+                    android:host="id.co.khwarizmi.qbsdonation" />
+                <data android:scheme="http" android:host="daf-q.id" />
+                <data android:scheme="https" />-->
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

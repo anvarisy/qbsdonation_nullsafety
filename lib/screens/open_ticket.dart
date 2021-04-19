@@ -41,40 +41,49 @@ class _open_ticket extends State<open_ticket> {
   Widget build(BuildContext context) {
 
     var width = MediaQuery.of(context).size.width;
-    return Container(
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+
+        centerTitle: true,
+      ),
+      body: Container(
+        margin: EdgeInsets.all(spacing_standard_new),
         child:GridView.builder(
-          scrollDirection: Axis.vertical,
-          physics: widget.isScrollable
-              ? ScrollPhysics()
-              : NeverScrollableScrollPhysics(),
-          itemCount: widget.mFavouriteList.length,
-          gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, crossAxisSpacing: 16, mainAxisSpacing: 16),
-          itemBuilder: (BuildContext context, int index) {
-            return GestureDetector(
-              onTap: () {
-               if (widget.mFavouriteList[index].value == 1) {
-                  showModalBottomSheet(
-                      isScrollControlled: true,
-                      context: context,
-                      builder: (BuildContext context) => new Padding(padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                        child: Container(
-                          decoration: new BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black26,
-                                blurRadius: 10.0,
-                                offset: const Offset(0.0, 10.0),
-                              ),
-                            ],
-                          ),
-                          width: MediaQuery.of(context).size.width,
-                          //height: MediaQuery.of(context).size.height * 0.8,
-                          padding: EdgeInsets.all(spacing_standard_new),
-                          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            physics: widget.isScrollable
+                ? ScrollPhysics()
+                : NeverScrollableScrollPhysics(),
+            itemCount: widget.mFavouriteList.length,
+            gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3, crossAxisSpacing: 16, mainAxisSpacing: 16),
+            itemBuilder: (BuildContext context, int index) {
+              return GestureDetector(
+                onTap: () {
+                  if (widget.mFavouriteList[index].value == 1) {
+                    showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: context,
+                        builder: (BuildContext context) =>SingleChildScrollView(padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                          child: Container(
+                            decoration: new BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 10.0,
+                                  offset: const Offset(0.0, 10.0),
+                                ),
+                              ],
+                            ),
+                            width: MediaQuery.of(context).size.width,
+                            //height: MediaQuery.of(context).size.height * 0.8,
+                            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               // To make the card compact
@@ -140,44 +149,45 @@ class _open_ticket extends State<open_ticket> {
                                 ),
                               ],
                             ),
-                          ),
-                        ),));
-                } else {
-                  // Navigator.pop(context);
-                  setState(() {
-                    value = widget.mFavouriteList[index].value!;
-                  });
-                  makePayment(widget.mFavouriteList[index].value!);
-                }
-              },
-              child: Container(
-                alignment: Alignment.center,
-                decoration: boxDecoration(
-                    radius: 10, showShadow: true, bgColor: t5White),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      height: width / 7.5,
-                      width: width / 7.5,
-                      margin: EdgeInsets.only(bottom: 4, top: 8),
-                      padding: EdgeInsets.all(width / 30),
-                      decoration: boxDecoration(
-                          bgColor: widget.mFavouriteList[index].color!,
-                          radius: 10),
-                      child: Image.asset(
-                        widget.mFavouriteList[index].icon,
-                        color: t5White,
+                          ),));
+                  } else {
+                    // Navigator.pop(context);
+                    setState(() {
+                      value = widget.mFavouriteList[index].value!;
+                    });
+                    makePayment(widget.mFavouriteList[index].value!);
+                  }
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: boxDecoration(
+                      radius: 10, showShadow: true, bgColor: t5White),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        height: width / 7.5,
+                        width: width / 7.5,
+                        margin: EdgeInsets.only(bottom: 4, top: 8),
+                        padding: EdgeInsets.all(width / 30),
+                        decoration: boxDecoration(
+                            bgColor: widget.mFavouriteList[index].color!,
+                            radius: 10),
+                        child: Image.asset(
+                          widget.mFavouriteList[index].icon,
+                          color: t5White,
+                        ),
                       ),
-                    ),
-                    text(widget.mFavouriteList[index].amount,
-                        fontSize: textSizeMedium)
-                  ],
+                      text(widget.mFavouriteList[index].amount,
+                          fontSize: textSizeMedium)
+                    ],
+                  ),
                 ),
-              ),
-            );
-          }),
-      );
+              );
+            }),
+      ),
+    );
+
   }
 
   @override
@@ -225,11 +235,11 @@ class _open_ticket extends State<open_ticket> {
         "phone": widget.profil.mobile,
       },
         "callbacks": {
-          "finish": "dafq://id.khwarizmi.qbsdonation",
+          //"finish": "dafq://id.khwarizmi.qbsdonation",
         },
         "gopay": {
           "enable_callback": true,
-          "callback_url":'dafq://id.khwarizmi.qbsdonation'
+          //"callback_url":'dafq://id.khwarizmi.qbsdonation'
         }
     };
     var json ;
@@ -247,7 +257,8 @@ class _open_ticket extends State<open_ticket> {
         "p_name":widget.profil.name,
         "mis_id":widget.m.id,
         "mis_name":widget.m.title,
-        "mis_image":widget.m.image
+        "mis_image":widget.m.image,
+        "gross_amount": "0"
       }).then((value) => {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) => snap_screen(snap_url: json['redirect_url'],)))
       }).catchError((onError){

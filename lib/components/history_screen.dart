@@ -1,4 +1,5 @@
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -98,8 +99,18 @@ class _history_screen extends State<history_screen>{
                       height: width / 6.2,
                       child:list[index].image==null?Image.asset('assets/images/icon.png',
                         fit: BoxFit.cover,):
-                      Image.network(list[index].image,
-                        fit: BoxFit.cover,),
+                      CachedNetworkImage(
+                        placeholder: (context, url) => Center(
+                          child: Container(
+                            width: 5.0,
+                            height: 5.0,
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        imageUrl:list[index].image,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     Expanded(
                       child: Column(

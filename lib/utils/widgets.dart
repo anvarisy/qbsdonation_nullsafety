@@ -96,7 +96,6 @@ Widget formField( context,hint,
     maxLines: maxLine,
     keyboardType: keyboardType,
     validator: validator,
-    onSaved: onSaved,
     textInputAction: textInputAction,
     focusNode: focusNode,
     onFieldSubmitted: (arg) {

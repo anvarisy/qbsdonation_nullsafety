@@ -40,11 +40,11 @@ class menu extends State<menu_screen> {
   var appbarTitle = 'Home';
 
   final _drawerCollection = [
-    {'index': 0, 'title': 'Home', 'icon': Icons.home},
-    {'index': 1, 'title': 'About', 'icon': Icons.business},
+    {'index': 0, 'title': 'Home', 'icon': "59322"},
+    {'index': 1, 'title': 'About', 'icon': "58910"},
     /*{'index': 2, 'title': 'Ajukan Misi', 'icon': Icons.add},*/
-    {'index': 2, 'title': 'Article', 'ico n': Icons.print},
-    {'index': 3, 'title': 'Profile', 'icon': Icons.person_outline},
+    {'index': 2, 'title': 'Article', 'icon': "0xe5b6"},
+    {'index': 3, 'title': 'Profile', 'icon': "59648"},
     //{'index': 5, 'title': 'STFQ Product', 'icon': Icons.print},
     //{'index': 6, 'title': 'Our STFQ', 'icon': Icons.person_outline},
   ];
@@ -63,12 +63,13 @@ class menu extends State<menu_screen> {
 
   @override
   Widget build(BuildContext context) {
+    print(_drawerCollection);
     final drawerItems = ListView(
       children: [
         _drawerHeader,
         for (final item in _drawerCollection) ListTile(
           title: Text(item['title'] as String),
-          leading: Icon(item['icon'] as IconData),
+          leading: Icon(IconData(int.parse(item['icon'].toString()), fontFamily: 'MaterialIcons')),
           onTap: () {
             changePage(item['index'] as int);
             Navigator.pop(context);

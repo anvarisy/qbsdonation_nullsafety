@@ -57,7 +57,8 @@ class _detail_screen extends State<detail_screen>{
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showSheet(context);
+         /* showSheet(context);*/
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> open_ticket(isScrollable: false,mFavouriteList: tickets,m: widget.m,profil: widget.profil,),));
         },
         child: FaIcon(FontAwesomeIcons.donate),
         backgroundColor: p_12,
@@ -416,6 +417,7 @@ class _detail_screen extends State<detail_screen>{
   Widget _Collected(BuildContext context, List<DocumentSnapshot> snapshot){
     double total = 0;
     for(DocumentSnapshot element in snapshot){
+      print(element['mis_id']);
       if(element['gross_amount']!=null){
         total+=double.parse(element['gross_amount']);
       }
@@ -448,7 +450,7 @@ class _detail_screen extends State<detail_screen>{
                               fontSize: textSizeMedium,
                               fontFamily: fontMedium,
                               color: t10_textColorSecondary)),
-                      /*  WidgetSpan(
+                        WidgetSpan(
                         child: Padding(
                           padding: EdgeInsets.only(left: 0),
                           child: Icon(
@@ -457,7 +459,7 @@ class _detail_screen extends State<detail_screen>{
                             size: 18,
                           ),
                         ),
-                      ),*/
+                      ),
                     ],
                   ),
                 ),

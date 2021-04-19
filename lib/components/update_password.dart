@@ -87,7 +87,7 @@ class _update_password extends State<update_password> {
                                       validator: (value) {
                                         return value!.isEmpty ? "Required" : null;},
                                       focusNode: passwordFocusold,
-                                      onSaved: (String value) {},
+                                      
                                       textInputAction: TextInputAction.done,
                                       suffixIconSelector: () {
                                         setState(() {
@@ -107,7 +107,7 @@ class _update_password extends State<update_password> {
                                      isPasswordVisible: passwordVisible1,
                                      validator: (value) {return value!.isEmpty ? "Required" : null;},
                                      focusNode: passwordFocus1,
-                                     onSaved: (String value) {},
+                                     
                                      textInputAction: TextInputAction.done,
                                      suffixIconSelector: () {
                                         setState(() {
@@ -128,7 +128,7 @@ class _update_password extends State<update_password> {
                                       return value!.isEmpty ? "Required" : null;
                                     },
                                     focusNode: passwordFocus2,
-                                    onSaved: (String value) {},
+                                    
                                     textInputAction: TextInputAction.done,
                                     suffixIconSelector: () {
                                       setState(() {

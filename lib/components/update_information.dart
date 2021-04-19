@@ -90,9 +90,7 @@ class update_state extends State<update_information>{
                                          return value!.isEmpty ? "Required" : null;
                                        },
                                        nextFocus: emailFocus,
-                                       onSaved: (String value) {
-                                         setState(() {});
-                                       }),),
+                                       ),),
                                  Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, spacing_standard_new),
                                    child: formField(context, "Your Email",
                                        isReadOnly: true,
@@ -105,9 +103,7 @@ class update_state extends State<update_information>{
                                          return value!.isEmpty ? "Required" : null;
                                        },
                                        nextFocus: phoneNumberFocus,
-                                       onSaved: (String value) {
-                                         setState(() {});
-                                       }),
+                                       ),
                                  ),
                                  Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, spacing_standard_new),
                                    child: formField(context, "Phone Number",
@@ -119,10 +115,7 @@ class update_state extends State<update_information>{
                                        keyboardType: TextInputType.number,
                                        validator: (value) {
                                          return value!.isEmpty ? "Required" : null;
-                                       },
-                                       onSaved: (String value) {
-                                         setState(() {});
-                                       }),),
+                                       },),),
 
                                ],
                              ),
