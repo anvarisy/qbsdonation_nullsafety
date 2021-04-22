@@ -4,6 +4,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_html/style.dart';
 import 'package:flutter_multi_formatter/formatters/money_input_enums.dart';
 import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -285,9 +287,22 @@ class _detail_screen extends State<detail_screen>{
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          text_normal(widget.m.detail.toString().replaceAll('/n', '\n'),
-              textColor: t10_textColorSecondary,
-              isLongText: true),
+          Html(
+            data: """
+             <div>
+             ${widget.m.detail.toString()}
+             </div>
+             """,
+            style: {
+              "div": Style(
+                textAlign: TextAlign.justify,
+                color: Color(0xFF130925),
+                fontSize: FontSize(16.0),
+                letterSpacing: 0.25,
+              ),
+            },
+            //Optional parameters:
+          ),
           SizedBox(
             height: spacing_standard_new,
           ),
@@ -433,9 +448,9 @@ class _detail_screen extends State<detail_screen>{
                   fontSize: textSizeLargeMedium),
               InkWell(
                 onTap: ()=>{
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>
+                 /* Navigator.of(context).push(MaterialPageRoute(builder: (context)=>
                       image_all_screen(images: widget.m.photos)
-                  ))
+                  ))*/
                 },
                 child:  RichText(
                   text: TextSpan(
@@ -450,16 +465,6 @@ class _detail_screen extends State<detail_screen>{
                               fontSize: textSizeMedium,
                               fontFamily: fontMedium,
                               color: t10_textColorSecondary)),
-                        WidgetSpan(
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 0),
-                          child: Icon(
-                            Icons.keyboard_arrow_right,
-                            color: t10_textColorPrimary,
-                            size: 18,
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),

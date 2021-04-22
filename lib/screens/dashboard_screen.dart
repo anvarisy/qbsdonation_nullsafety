@@ -9,6 +9,8 @@ import 'package:qbsdonation/utils/colors.dart';
 import 'package:qbsdonation/utils/constants.dart';
 import 'package:qbsdonation/utils/widgets.dart';
 
+import 'mission_screen.dart';
+
 class dashboard_screen extends StatefulWidget{
   user_profil profil;
 
@@ -70,7 +72,10 @@ class _dashboard_screen extends State<dashboard_screen>{
                              fontFamily: fontBold),
                          InkWell(
                            onTap: () => {
-
+                             Navigator.of(context).push(MaterialPageRoute(
+                                 builder: (context) => mission_screen(
+                                   profil: widget.profil,
+                                 )))
                            },
                            child: RichText(
                              text: TextSpan(

@@ -152,9 +152,10 @@ class _open_ticket extends State<open_ticket> {
                           ),));
                   } else {
                     // Navigator.pop(context);
-                    setState(() {
+/*                    setState(() {
                       value = widget.mFavouriteList[index].value!;
-                    });
+                    });*/
+                    print(widget.mFavouriteList[index].value!);
                     makePayment(widget.mFavouriteList[index].value!);
                   }
                 },
@@ -187,6 +188,8 @@ class _open_ticket extends State<open_ticket> {
             }),
       ),
     );
+
+
 
   }
 
@@ -248,8 +251,6 @@ class _open_ticket extends State<open_ticket> {
       if(EasyLoading.isShow){
         EasyLoading.dismiss()
       },
-      Navigator.pop(context),
-      print(value),
       json =jsonDecode(value),
       FirebaseFirestore.instance.collection("s-transactions")
           .doc(random_id).set({
@@ -262,6 +263,9 @@ class _open_ticket extends State<open_ticket> {
       }).then((value) => {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) => snap_screen(snap_url: json['redirect_url'],)))
       }).catchError((onError){
+        if(EasyLoading.isShow){
+          EasyLoading.dismiss();
+        };
         Flushbar(
           title: "Error",
           message: "Terjadi gangguan jaringan",
