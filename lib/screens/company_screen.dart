@@ -91,15 +91,16 @@ class company extends State<company_screen> {
         c.detail = element['profil_detail'];
         c.photos = element['photo_collection'];
         c.visi = element['profil_vision'];
-        c.missions = element['profil_mission'];
+        c.missions = element['profil_missions'];
+        print(c.missions);
     }
-    for (String item in c.missions){
+   /* for (String item in c.missions){
       misi+='<li>'+'${item}'+'</br>'+'</li>';
     }
-    misi+='</ol>';
+    misi+='</ol>';*/
        items.add(c.detail);
        items.add(c.visi);
-       items.add(misi);
+       items.add( c.missions);
 
     return SafeArea(
       child: Column(
