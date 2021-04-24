@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="id.co.khwarizmi.qbsdonation">
    <application
-        android:label="qbsdonation"
+        android:label="DAFQ"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
