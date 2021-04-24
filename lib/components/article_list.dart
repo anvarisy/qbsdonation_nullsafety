@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_html/style.dart';
 import 'package:qbsdonation/models/dafq.dart';
 import 'package:qbsdonation/utils/colors.dart';
 import 'package:qbsdonation/utils/constants.dart';
@@ -103,7 +105,23 @@ class _article_list extends State<article_list>{
                                       SizedBox(
                                         height: 4,
                                       ),
-                                      text(list[index].detail.toString().replaceAll('/n', '\n'), fontSize: textSizeSMedium, maxLine: 3),
+                                      Html(
+                                        data: """
+                                             <div>
+                                              ${list[index].detail.toString().substring(0, 60)+'..'}
+                                             </div>
+                                              """,
+
+                                        style: {
+                                          "div": Style(
+                                            textAlign: TextAlign.left,
+                                            color: Color(0xFF130925),
+                                            fontSize: FontSize(16.0),
+                                            letterSpacing: 0.25,
+                                          ),
+                                        },
+                                        //Optional parameters:
+                                      ),
                                       SizedBox(
                                         height: 4,
                                       ),
