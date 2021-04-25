@@ -68,10 +68,11 @@ class _CartViewState extends State<CartView> with SingleTickerProviderStateMixin
       ],
     };
 
+    // stfq market order prefix: mkq-
     return marketCol.doc('Carts').collection('items').add(postData)
         .then((doc) =>
           marketCol.doc('Carts').collection('items').doc(doc.id).update({
-            "order_id": 'mk-'+doc.id,})
+            "order_id": 'mkq-'+doc.id,})
         )
         .whenComplete(() async {
           int savedCarts = await SavedData.deleteSavedCart('${cart.tenantId}');
@@ -437,13 +438,17 @@ class _CartViewState extends State<CartView> with SingleTickerProviderStateMixin
                               crossAxisAlignment: CrossAxisAlignment.end, //CrossAxisAlignment.stretch,
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                RaisedButton.icon(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0),
+                                ElevatedButton.icon(
+                                  style: ButtonStyle(
+                                    shape: MaterialStateProperty.all(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(15.0),
+                                      ),
+                                    ),
+                                    elevation: MaterialStateProperty.all(0),
+                                    padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0)),
+                                    backgroundColor: MaterialStateProperty.all(Theme.of(context).accentColor),
                                   ),
-                                  elevation: 0,
-                                  padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-                                  color: Theme.of(context).accentColor,
                                   icon: Icon(
                                     widget.status == 0 ? Icons.shopping_bag : Icons.payment,
                                     color: Colors.white,

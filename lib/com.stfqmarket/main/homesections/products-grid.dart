@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:qbsdonation/com.stfqmarket/helper/tempdata.dart';
 import 'package:qbsdonation/com.stfqmarket/item-view/product.dart';
 import 'package:qbsdonation/com.stfqmarket/objects/product.dart';
 
@@ -11,19 +12,37 @@ class ProductsGrid extends StatefulWidget {
   final String searchQuery;
 
   const ProductsGrid({Key? key,
-    required this.rootAction, required this.changeRootPage, required this.searchQuery
+    required this.rootAction, required this.changeRootPage,
+    required this.searchQuery
   }) : super(key: key);
 
   @override
-  _ProductsGridState createState() => _ProductsGridState();
+  MarketProductsGridState createState() => MarketProductsGridState();
 }
 
-class _ProductsGridState extends State<ProductsGrid> {
+class MarketProductsGridState extends State<ProductsGrid> {
+
+  late String _searchHistory;
   int _productsCount = -1;
+  int numberOfRefresh = 0;
 
   _setProductCount(int count) {
     setState(() => _productsCount = count);
     widget.rootAction(_productsCount);
+  }
+
+  Future<List<Product>> _getProducts() async {
+    if (TempData.MarketProducts != null && _searchHistory == widget.searchQuery) return TempData.MarketProducts!;
+
+    var snapshot = widget.searchQuery.isNotEmpty
+        ? await FirebaseFirestore.instance.collection('stfq-market').doc('Products').collection('items').orderBy('product_name')
+        .where('product_query', arrayContains: widget.searchQuery).get()
+    //.where('product_name', isGreaterThanOrEqualTo: widget.searchQuery).where('product_name', isLessThanOrEqualTo: widget.searchQuery+ '\uf8ff').get()
+        : await FirebaseFirestore.instance.collection('stfq-market').doc('Products').collection('items').orderBy('product_name')
+        .get();
+    var data = Product.toList(snapshot.docs);
+    TempData.MarketProducts = data;
+    return data;
   }
 
   @override
@@ -40,6 +59,13 @@ class _ProductsGridState extends State<ProductsGrid> {
     _futureCategories = _fetchCategories();
     _fetchProducts(refresh: true);*/
     super.initState();
+    _searchHistory = widget.searchQuery;
+  }
+
+  void refresh() {
+    setState(() {
+      numberOfRefresh++;
+    });
   }
 
   @override
@@ -59,16 +85,12 @@ class _ProductsGridState extends State<ProductsGrid> {
         ),
         Padding(
           padding: const EdgeInsets.all(4.0),
-          child: FutureBuilder<QuerySnapshot>(
-            future: widget.searchQuery.isNotEmpty 
-                ? FirebaseFirestore.instance.collection('stfq-market').doc('Products').collection('items').orderBy('product_name')
-                .where('product_query', arrayContains: widget.searchQuery).get()
-                //.where('product_name', isGreaterThanOrEqualTo: widget.searchQuery).where('product_name', isLessThanOrEqualTo: widget.searchQuery+ '\uf8ff').get()
-                : FirebaseFirestore.instance.collection('stfq-market').doc('Products').collection('items').orderBy('product_name')
-                .get(),
+          child: FutureBuilder<List<Product>>(
+            key: Key('$numberOfRefresh'),
+            future: _getProducts(),
             builder: (_, snapshot) {
               if (snapshot.hasData) {
-                var data = Product.toList(snapshot.data!.docs);
+                var data = snapshot.data!;
                 var screenWidth = MediaQuery.of(context).size.width;
                 int gridCrossAxisCount = (screenWidth / 120).truncate();
 
@@ -90,8 +112,14 @@ class _ProductsGridState extends State<ProductsGrid> {
                 );
               }
               else if (snapshot.hasError) {
-                print(snapshot.error);
-                return const Center(child: Text('Terjadi masalah'),);
+                return Center(
+                  child: Column(
+                    children: [
+                      Text('Gagal memuat. Cek internet anda'),
+                      ElevatedButton(onPressed: refresh, child: Text('Muat Ulang')),
+                    ],
+                  ),
+                );
               }
 
               return const Center(child: CircularProgressIndicator(),);

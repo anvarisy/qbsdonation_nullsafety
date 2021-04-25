@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:qbsdonation/com.stfqmarket/helper/tempdata.dart';
 import 'package:qbsdonation/com.stfqmarket/main.dart';
+import 'package:qbsdonation/com.stfqmarket/main/homesections/allsections.dart';
 import 'package:qbsdonation/models/dafq.dart';
 import 'package:qbsdonation/screens/article_screen.dart';
 //import 'package:qbsdonation/screens/join_screen.dart';
@@ -35,16 +37,19 @@ class menu_screen extends StatefulWidget {
 }
 
 class menu extends State<menu_screen> {
+  static final GlobalKey<MarketCategorySectionState> marketCategoryKey = GlobalKey();
+  static final GlobalKey<MarketProductsGridState> marketProductsKey = GlobalKey();
+
   var currentIndex = 0;
   var currentIndexPage = 0;
   var appbarTitle = 'Home';
 
   final _drawerCollection = [
-    {'index': 0, 'title': 'Home', 'icon': "59322"},
-    {'index': 1, 'title': 'About', 'icon': "58910"},
+    {'index': 0, 'title': 'Home', 'icon': Icons.home},
+    {'index': 1, 'title': 'About', 'icon': Icons.business},
     /*{'index': 2, 'title': 'Ajukan Misi', 'icon': Icons.add},*/
-    {'index': 2, 'title': 'Article', 'icon': "0xe5b6"},
-    {'index': 3, 'title': 'Profile', 'icon': "59648"},
+    {'index': 2, 'title': 'Article', 'icon': Icons.print},
+    {'index': 3, 'title': 'Profile', 'icon': Icons.person_outline},
     //{'index': 5, 'title': 'STFQ Product', 'icon': Icons.print},
     //{'index': 6, 'title': 'Our STFQ', 'icon': Icons.person_outline},
   ];
@@ -63,13 +68,12 @@ class menu extends State<menu_screen> {
 
   @override
   Widget build(BuildContext context) {
-    print(_drawerCollection);
     final drawerItems = ListView(
       children: [
         _drawerHeader,
         for (final item in _drawerCollection) ListTile(
           title: Text(item['title'] as String),
-          leading: Icon(IconData(int.parse(item['icon'].toString()), fontFamily: 'MaterialIcons')),
+          leading: Icon(item['icon'] as IconData),
           onTap: () {
             changePage(item['index'] as int);
             Navigator.pop(context);
@@ -117,7 +121,13 @@ class menu extends State<menu_screen> {
               onPressed: (){
                 _signOut();
               },
-            )
+            ),
+            if (currentIndex == _drawerCollection.length) IconButton(
+              icon: Icon(Icons.refresh),
+              onPressed: (){
+                _refresh();
+              },
+            ),
           ],
         ),
         body: list_screens[currentIndex],
@@ -177,7 +187,11 @@ class menu extends State<menu_screen> {
     return new login_screen();
   }
 
-
+  void _refresh() {
+    TempData.clear();
+    if (marketCategoryKey.currentState != null) marketCategoryKey.currentState!.refresh();
+    if (marketProductsKey.currentState != null) marketProductsKey.currentState!.refresh();
+  }
 }
 
 class CustomDialogExit extends StatelessWidget {

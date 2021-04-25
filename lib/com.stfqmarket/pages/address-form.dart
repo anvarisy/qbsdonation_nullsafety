@@ -205,14 +205,9 @@ class _SelectServiceDialogState extends State<SelectServiceDialog> {
         ),
         TextButton(
           child: Text('OK'),
-          onPressed: () {
-            if (_selectedService == null) {
-              Scaffold.of(context)
-                  .showSnackBar(SnackBar(content: Text('Pilih tipe pengiriman terlebih dahulu.'),));
-            } else {
-              Navigator.of(context).pop(_selectedService);
-            }
-          },
+          onPressed: (_selectedService != null)
+              ? () => Navigator.of(context).pop(_selectedService)
+              : null,
         ),
       ],
     );
@@ -454,7 +449,7 @@ class _AddressFormPageState extends State<AddressFormPage> {
                         hintText: 'Cari Kota...',
                       ),
                       dropdownSearchDecoration: DefaultInputDecoration(),
-                      onChanged: (Kota city) => setState(() { _selectedKota = city; }),
+                      onChanged: (Kota? city) => setState(() { _selectedKota = city; }),
                       validator: (val) {
                         if (val == null) {
                           return 'Harus diisi';

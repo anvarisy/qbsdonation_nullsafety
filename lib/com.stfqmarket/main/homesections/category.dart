@@ -1,17 +1,32 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:qbsdonation/com.stfqmarket/helper/tempdata.dart';
 import 'package:qbsdonation/com.stfqmarket/objects/category.dart';
 
 class MainPageCategorySection extends StatefulWidget {
+  MainPageCategorySection({Key? key}) : super(key: key);
+
   @override
-  _MainPageCategorySectionState createState() => _MainPageCategorySectionState();
+  MarketCategorySectionState createState() => MarketCategorySectionState();
 }
 
-class _MainPageCategorySectionState extends State<MainPageCategorySection> {
+class MarketCategorySectionState extends State<MainPageCategorySection> {
 
-  @override
-  void initState() {
-    super.initState();
+  int numberOfRefresh = 0;
+
+  Future<List<Category>> _getCategories({bool refresh=false}) async {
+    if (TempData.MarketCategories != null && refresh == false) return TempData.MarketCategories!;
+
+    var snapshot = await FirebaseFirestore.instance.collection('stfq-market').doc('Categories').collection('items').get();
+    var data = Category.toList(snapshot.docs);
+    TempData.MarketCategories = data;
+    return data;
+  }
+
+  void refresh() {
+    setState(() {
+      numberOfRefresh++;
+    });
   }
 
   @override
@@ -30,14 +45,15 @@ class _MainPageCategorySectionState extends State<MainPageCategorySection> {
           ),
         ),
         Container(
+          //key: Key('$numberOfRefresh'),
           height: 120.0,
           padding: EdgeInsets.symmetric(horizontal: 4.0),
-          child: FutureBuilder<QuerySnapshot>(
-            future: FirebaseFirestore.instance.collection('stfq-market').doc('Categories').collection('items').get(),
+          child: FutureBuilder<List<Category>>(
+            key: Key('$numberOfRefresh'),
+            future: _getCategories(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                var data = Category.toList(snapshot.data!.docs);
-
+                var data = snapshot.data!;
                 return ListView.builder(
                   shrinkWrap: true,
                   itemCount: data.length,
@@ -79,7 +95,12 @@ class _MainPageCategorySectionState extends State<MainPageCategorySection> {
               }
               else if (snapshot.hasError)
                 return Center(
-                  child: Text('Check your internet'),
+                  child: Column(
+                    children: [
+                      Text('Gagal memuat. Cek internet anda'),
+                      ElevatedButton(onPressed: refresh, child: Text('Muat Ulang')),
+                    ],
+                  ),
                 );
               return Center(
                 child: CircularProgressIndicator(),

@@ -6,6 +6,7 @@ import 'package:qbsdonation/com.stfqmarket/helper/constant.dart';
 import 'package:qbsdonation/com.stfqmarket/helper/saveddata.dart';
 import 'package:qbsdonation/com.stfqmarket/main/ordersections/payment-webview.dart';
 import 'package:qbsdonation/com.stfqmarket/objects/cart.dart';
+import 'package:qbsdonation/models/dafq.dart';
 import 'package:http/http.dart' as http;
 import 'package:qbsdonation/com.stfqmarket/pages/address-form.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -45,7 +46,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
 
   Future<dynamic> _getStatus() async {
     final statusResponse = await http.get(
-      Uri.https('api.midtrans.com', '/v2/${widget.cart.orderId}/status'),
+      Uri.https('app.midtrans.com', '/v2/${widget.cart.orderId}/status'),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -70,7 +71,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
     var savedAddress = SavedData.getSavedAddress(pref);
 
     var responseToken = await http.post(
-      Uri.https('api.midtrans.com', '/snap/v1/transactions'),
+      Uri.https('app.midtrans.com', '/snap/v1/transactions'),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json; charset=UTF-8',
@@ -284,14 +285,71 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
           children: [
             Expanded(
               child: Center(
-                child: Text(
-                  'Bayar barang barang di ${widget.cart.tenantName}?\n\n'
-                      'Total harga barang: ${widget.cart.total}\n'
-                      'Harga ongkir: $hargaOngkir',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: 16.0, fontWeight: FontWeight.w400, letterSpacing: 1.2,
-                  ),
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    Text(
+                      'Bayar barang barang di ${widget.cart.tenantName}?\n',
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 16.0, fontWeight: FontWeight.w400, letterSpacing: 1.1,
+                      ),
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Total harga barang:',
+                          style: TextStyle(
+                            fontSize: 16.0, fontWeight: FontWeight.w300, letterSpacing: 1.1,
+                          ),
+                        ),
+                        Text(
+                          money.toCurrency(widget.cart.total.toString()),
+                          style: TextStyle(
+                            fontSize: 16.0, fontWeight: FontWeight.w300, letterSpacing: 1.1,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Harga ongkir:',
+                          style: TextStyle(
+                            fontSize: 16.0, fontWeight: FontWeight.w300, letterSpacing: 1.1,
+                          ),
+                        ),
+                        Text(
+                          money.toCurrency(hargaOngkir.toString()),
+                          style: TextStyle(
+                            fontSize: 16.0, fontWeight: FontWeight.w300, letterSpacing: 1.1,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '\nTotal bayaran:',
+                          style: TextStyle(
+                            fontSize: 16.0, fontWeight: FontWeight.w300, letterSpacing: 1.1,
+                          ),
+                        ),
+                        Text(
+                          '\n${money.toCurrency((widget.cart.total + hargaOngkir!).toString())}',
+                          style: TextStyle(
+                            fontSize: 16.0, fontWeight: FontWeight.w300, letterSpacing: 1.1,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -334,16 +392,19 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
     return Column(
       children: [
         Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(icon, color: iconColor, size: 48.0,),
-              Padding(
-                padding: const EdgeInsets.only(top: 12.0),
-                child: Center(child: Text(message, style: TextStyle(fontSize: 16.0), textAlign: TextAlign.center,)),
-              ),
-            ],
+          child: Center(
+            child: ListView(
+              shrinkWrap: true,
+              //mainAxisAlignment: MainAxisAlignment.center,
+              //crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(icon, color: iconColor, size: 48.0,),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12.0),
+                  child: Center(child: Text(message, style: TextStyle(fontSize: 16.0), textAlign: TextAlign.center,)),
+                ),
+              ],
+            ),
           ),
         ),
         Row(
@@ -385,7 +446,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
+      height: MediaQuery.of(context).size.height * (4/5),
       child: Column(
         children: [
           Container(
@@ -401,8 +462,10 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
           const Divider(thickness: 1),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: bottomSheetContent,
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Center(
+                child: bottomSheetContent,
+              ),
             ),
           ),
         ],

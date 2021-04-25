@@ -1,6 +1,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:qbsdonation/com.stfqmarket/helper/tempdata.dart';
 import 'package:qbsdonation/com.stfqmarket/helper/constant.dart';
 import 'package:qbsdonation/com.stfqmarket/helper/generator.dart';
 import 'package:qbsdonation/com.stfqmarket/helper/saveddata.dart';
@@ -13,7 +14,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 class CartViewViewModel extends ChangeNotifier {
   double? _progress = 0;
 
-  double progress(AnimationController controller, Animation<double> animation) {
+  double? progress(AnimationController controller, Animation<double> animation) {
+    if (_progress == null) return null;
+
     Tween<double> _loadingTween = Tween(
       begin: _progress,
       end: 1.0,
@@ -24,7 +27,7 @@ class CartViewViewModel extends ChangeNotifier {
 
   List<Cart>? _carts;
 
-  List<Cart> get carts => _carts ?? [];
+  List<Cart>? get carts => _carts;
 
   void loadCheckout(user_profil user) async {
     _carts = await _loadCheckoutCarts(user);
@@ -115,7 +118,6 @@ class CartViewViewModel extends ChangeNotifier {
                 dateFormat, Constant.orderStatus.pendingCheckout, tenant.id, tenant.cityCode, null,
                 CartUser(profil.uid, profil.name, profil.email), details));
       }
-
       return carts;
     }
   }

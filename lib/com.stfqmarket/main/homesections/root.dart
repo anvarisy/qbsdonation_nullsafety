@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:qbsdonation/com.stfqmarket/main/homesections/allsections.dart';
+import 'package:qbsdonation/screens/menu_screen.dart';
 
 class MainPageHomeRoot extends StatefulWidget {
   const MainPageHomeRoot({Key? key, required this.rootAction, required this.changeRootPage}) : super(key: key);
@@ -16,10 +17,17 @@ class MainPageHomeRoot extends StatefulWidget {
 class _MainPageHomeRootState extends State<MainPageHomeRoot> {
 
   String searchQuery = '';
+  int numberOfRefresh = 0;
 
   void updateSearchQuery(String query) {
     setState(() {
       searchQuery = query;
+    });
+  }
+
+  void refresh() {
+    setState(() {
+      numberOfRefresh++;
     });
   }
 
@@ -41,8 +49,8 @@ class _MainPageHomeRootState extends State<MainPageHomeRoot> {
           padding: EdgeInsets.only(bottom: 12.0),
           sliver: SliverList(
             delegate: SliverChildListDelegate.fixed([
-              MainPageCategorySection(),
-              ProductsGrid(rootAction: widget.rootAction, changeRootPage: widget.changeRootPage, searchQuery: searchQuery),
+              MainPageCategorySection(key: menu.marketCategoryKey),
+              ProductsGrid(key: menu.marketProductsKey, rootAction: widget.rootAction, changeRootPage: widget.changeRootPage, searchQuery: searchQuery),
             ]),
           ),
         ),

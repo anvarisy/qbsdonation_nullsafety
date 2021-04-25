@@ -96,7 +96,10 @@ class _ProductViewState extends State<ProductView> {
               AspectRatio(
                 aspectRatio: 1,
                 child: Image.network(
-                  _detail.productImage.contains('http') ? _detail.productImage : '${Constant.MEDIA_URL_PREFIX}${_detail.productImage}',
+                  _detail.productImage,
+                  errorBuilder: (context, e, trace) {
+                    return Center(child: Icon(Icons.broken_image, size: 24,));
+                  },
                 ),
               ),
               Expanded(

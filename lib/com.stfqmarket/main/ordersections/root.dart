@@ -70,16 +70,16 @@ class _MainPageOrderRootState extends State<MainPageOrderRoot> with TickerProvid
           viewModelBuilder: () => CartViewViewModel(),
           onModelReady: (model) => model.loadPayment(userId),
           builder: (_, model, child) {
-            if (model.carts != null && model.carts.isNotEmpty) {
+            if (model.carts != null && model.carts!.isNotEmpty) {
               return CartView(
-                key: Key('cv${model.carts.length}'),
+                key: Key('cv${model.carts!.length}'),
                 profile: widget.profile,
-                carts: model.carts,
+                carts: model.carts!,
                 status: _tabIndex,
                 updateCartCount: widget.rootAction,
                 deleteCart: model.deleteCart,
               );
-            } else if (model.carts != null && model.carts.isEmpty) {
+            } else if (model.carts != null && model.carts!.isEmpty) {
               return Center(child: Text('Belum ada keranjang yang sudah di periksa.', textAlign: TextAlign.center,),);
             }
 
@@ -92,7 +92,6 @@ class _MainPageOrderRootState extends State<MainPageOrderRoot> with TickerProvid
             );
           },
         );
-        break;
       case 2:
         return ViewModelBuilder<CartViewViewModel>.reactive(
           key: Key('2'),
@@ -100,9 +99,9 @@ class _MainPageOrderRootState extends State<MainPageOrderRoot> with TickerProvid
           viewModelBuilder: () => CartViewViewModel(),
           onModelReady: (model) => model.loadPostPayment(userId),
           builder: (_, model, child) {
-            if (model.carts != null && model.carts.isNotEmpty) {
-              return OrderHistory(model.carts);
-            } else if (model.carts != null && model.carts.isEmpty) {
+            if (model.carts != null && model.carts!.isNotEmpty) {
+              return OrderHistory(model.carts!);
+            } else if (model.carts != null && model.carts!.isEmpty) {
               return Center(child: Text('Belum ada keranjang yang sudah di bayar.', textAlign: TextAlign.center,),);
             }
 
@@ -115,7 +114,6 @@ class _MainPageOrderRootState extends State<MainPageOrderRoot> with TickerProvid
             );
           },
         );
-        break;
       case 0:
       default:
         return ViewModelBuilder<CartViewViewModel>.reactive(
@@ -124,15 +122,15 @@ class _MainPageOrderRootState extends State<MainPageOrderRoot> with TickerProvid
           viewModelBuilder: () => CartViewViewModel(),
           onModelReady: (model) => model.loadCheckout(widget.profile),
           builder: (_, model, child) {
-            if (model.carts != null && model.carts.isNotEmpty) return CartView(
-              key: Key('cv${model.carts.length}'),
+            if (model.carts?.isNotEmpty ?? false) return CartView(
+              key: Key('cv${model.carts!.length}'),
               profile: widget.profile,
-              carts: model.carts,
+              carts: model.carts!,
               status: _tabIndex,
               updateCartCount: widget.rootAction,
               deleteCart: model.deleteCart,
             );
-            else if (model.carts != null && model.carts.isEmpty) {
+            else if (model.carts?.isEmpty ?? false) {
               return Center(child: Text('Tidak ada barang di keranjang. Segera belanja produk kami.', textAlign: TextAlign.center),);
             }
 

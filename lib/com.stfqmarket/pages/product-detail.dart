@@ -65,14 +65,9 @@ class _STFQMarketProductPageState extends State<STFQMarketProductPage> {
     });
   }
 
-  _showFullscreenImage(String image) {
+  _showFullscreenImage(Widget child) {
     MaterialPageRoute route = MaterialPageRoute(
-      builder: (c) => FullscreenWidget(
-        Image.network(
-          image,
-          fit: BoxFit.contain,
-        ),
-      )
+      builder: (c) => FullscreenWidget(child)
     );
     Navigator.push(context, route);
   }
@@ -206,11 +201,31 @@ class _STFQMarketProductPageState extends State<STFQMarketProductPage> {
                             ? widget.product.image
                             : widget.product.imageCollections![i-1];
 
-                        return GestureDetector(
-                          onTap: () => _showFullscreenImage(image!),
+                        return Container(
                           child: Image.network(
                             image!,
                             fit: BoxFit.cover,
+                            frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+                              return GestureDetector(
+                                onTap: () => _showFullscreenImage(child),
+                                child: child,
+                              );
+                            },
+                            loadingBuilder: (context, widget, event) {
+                              if (event == null) return widget;
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  value: event.expectedTotalBytes != null
+                                      ? event.cumulativeBytesLoaded / event.expectedTotalBytes!
+                                      : null,
+                                  backgroundColor: Colors.white60,
+                                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                                ),
+                              );
+                            },
+                            errorBuilder: (context, e, trace) {
+                              return Center(child: Icon(Icons.broken_image, size: 28, color: Colors.white,));
+                            },
                           ),
                         );
                       },

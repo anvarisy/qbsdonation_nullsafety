@@ -102,6 +102,9 @@ class _ProductItemViewState extends State<ProductItemView> {
                         width: 50,
                         height: 50,
                         fit: BoxFit.cover,
+                        errorBuilder: (context, e, trace) {
+                          return Center(child: Icon(Icons.broken_image, size: 28,));
+                        },
                       ),
                     ),
                   ),
@@ -154,8 +157,11 @@ class _ProductItemViewState extends State<ProductItemView> {
                       child: Text(
                         data.name!,
                         textAlign: TextAlign.start,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                          fontWeight: widget.titleFontWeight,),
+                          fontWeight: widget.titleFontWeight,
+                        ),
                       ),
                     ),
                     Padding(
