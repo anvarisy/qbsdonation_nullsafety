@@ -2,7 +2,7 @@
     package="id.co.khwarizmi.qbsdonation">
    <application
         android:label="DAFQ"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@drawable/icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
