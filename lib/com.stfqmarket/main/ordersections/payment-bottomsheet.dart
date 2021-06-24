@@ -143,7 +143,13 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
     _changeState(STATE_GET_STATUS);
     final status = await _getStatus();
 
-    switch (int.tryParse(status['status_code']) ?? -1) {
+    int tryInt;
+    try {
+      tryInt = int.tryParse(status['status_code']) ?? -1;
+    } catch (e) {
+      tryInt = -1;
+    }
+    switch (tryInt) {
       // order id not found
       case 404:
         if (!reCheck) {
